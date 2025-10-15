@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  storage-app:
+    build: .
+    image: teletronics/storage_app:latest
+    container_name: storage_app
+    ports:
+      - "8080:8080"
+    mem_limit: 1g
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+          cpus: "1.0"
+    volumes:
+      - ./data:/data
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/storage_app
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

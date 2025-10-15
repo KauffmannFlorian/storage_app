@@ -1,0 +1,94 @@
+# ===========================================
+# Java / Maven
+# ===========================================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+dependency-reduced-pom.xml
+release.properties
+*.iml
+*.class
+*.log
+*.tmp
+*.bak
+*.swp
+*.lock
+
+# ===========================================
+# IntelliJ IDEA / Eclipse / VSCode
+# ===========================================
+.idea/
+.project
+.classpath
+.settings/
+.vscode/
+*.iws
+
+# ===========================================
+# OS generated files
+# ===========================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ===========================================
+# Environment / Secrets / Configs
+# ===========================================
+.env
+.env.*
+application.properties
+application.yml
+application-local.yml
+*.secret
+*.key
+*.pem
+
+# ===========================================
+# Docker / Compose
+# ===========================================
+docker-compose.override.yml
+docker-data/
+data/
+logs/
+*.pid
+
+# ===========================================
+# Build outputs & reports
+# ===========================================
+/build/
+out/
+dist/
+reports/
+coverage/
+jacoco.exec
+
+# ===========================================
+# Node / Frontend (if any future UI)
+# ===========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===========================================
+# GitHub Actions / CI
+# ===========================================
+/.github/workflows/*.tmp
+.github/actions-cache/
+ci-results/
+test-results/
+
+# ===========================================
+# Archives / Backups
+# ===========================================
+*.tar
+*.zip
+*.gz
+*.7z
+
+# ===========================================
+# IDE / Misc
+# =================================

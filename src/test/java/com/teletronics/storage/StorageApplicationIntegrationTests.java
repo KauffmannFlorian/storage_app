@@ -1,11 +1,15 @@
 package com.teletronics.storage;
 
+import com.teletronics.storage.repository.FileRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -28,7 +32,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StorageApplicationIntegrationTests {
+
+    @Autowired private MongoTemplate mongoTemplate;
+    @Autowired private FileRepository fileRepository;
+    @Autowired private GridFsTemplate gridFsTemplate;
 
     @LocalServerPort
     private int port;
@@ -45,6 +54,12 @@ public class StorageApplicationIntegrationTests {
         headers.add("X-User-Id", userId);
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         return headers;
+    }
+
+    @BeforeAll
+    void cleanDatabaseBeforeAllTests() {
+        fileRepository.deleteAll();
+        gridFsTemplate.delete(new Query());
     }
 
     private MultiValueMap<String, Object> multipart(String filename, byte[] content) {

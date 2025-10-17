@@ -178,12 +178,16 @@ public class StorageApplicationIntegrationTests {
         HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(body, headers);
 
         long start = System.currentTimeMillis();
+        long memBefore = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+
         ResponseEntity<String> response =
                 restTemplate.postForEntity(getBaseUrl() + "/files/upload", request, String.class);
         long duration = System.currentTimeMillis() - start;
+        long memAfter = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long memUsedMB = (memAfter - memBefore) / (1024 * 1024);
 
-        System.out.printf("2GB upload simulated: %d ms, status=%s%n",
-                duration, response.getStatusCode());
+        System.out.printf("2GB upload simulated: %d ms, status=%s, memory used: %dMB%n",
+                duration, response.getStatusCode(), memUsedMB);
 
         assertThat(response.getStatusCode().is2xxSuccessful()
                 || response.getStatusCode().is5xxServerError()).isTrue();
@@ -201,7 +205,6 @@ public class StorageApplicationIntegrationTests {
         );
 
         assertThat(listResponse.getBody()).contains("larges_2GB_test.bin");
-
     }
 
     // =============================================================

@@ -41,8 +41,8 @@ mvn test
 ## Run with Docker
 
 ```bash
-docker build -t storage_app:latest .
-docker run --memory=1g --storage-opt size=200m --rm storage_app java -version
+docker compose build
+docker compose up -d
 ```
 
 Swagger UI → [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)

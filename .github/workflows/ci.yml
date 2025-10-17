@@ -40,10 +40,10 @@ jobs:
       - name: Build Docker image
         run: docker build -t storage_app:latest .
 
-      - name: Check Docker image size
-        run: |
-          docker images storage_app --format "table {{.Repository}}\t{{.Size}}"
+      #- name: Check Docker image size
+      #  run: |
+      #    docker images storage_app --format "table {{.Repository}}\t{{.Size}}"
 
       #- name: Verify image memory/disk constraints
       #  run: |
-      #   docker run --memory=1g --storage-opt size=200m --rm storage_app java -version
+      #   docker run --memory=1g --storage-opt size=200m --rm storage_app java -version --link mongo:mongo

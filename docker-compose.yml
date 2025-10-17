@@ -23,6 +23,8 @@ services:
     image: mongo:7
     container_name: mongo
     restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=storage_app
     ports:
       - "27017:27017"
     volumes:

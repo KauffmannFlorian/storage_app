@@ -34,7 +34,7 @@ Features:
 
 ```bash
 docker run -d -p 27017:27017 -e MONGO_INITDB_DATABASE=storage_app --name mongo mongo
-mvn spring-boot:run
+mvn clean spring-boot:run
 mvn test
 ```
 

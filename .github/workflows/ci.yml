@@ -46,4 +46,4 @@ jobs:
 
       - name: Verify image memory/disk constraints
         run: |
-         docker run --memory=1g --rm storage_app java -version
+         docker run --memory=1g --storage-opt size=200m --rm storage_app java -version

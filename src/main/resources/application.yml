@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/storage_app
+      auto-index-creation: true
+  servlet:
+    multipart:
+      max-file-size: 50GB
+      max-request-size: 50GB
+
+server:
+  port: 8080

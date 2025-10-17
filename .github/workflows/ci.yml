@@ -38,12 +38,12 @@ jobs:
       #  run: mvn test
 
       #- name: Build Docker image
-      #  run: docker build -t teletronics/storage_app:latest .
+      #  run: docker build -t storage_app:latest .
 
       #- name: Check Docker image size
       #  run: |
-      #    docker images teletronics/storage_app --format "table {{.Repository}}\t{{.Size}}"
+      #    docker images storage_app --format "table {{.Repository}}\t{{.Size}}"
 
       #- name: Verify image memory/disk constraints
       #  run: |
-      #   docker run --memory=1g --rm teletronics/storage_app java -version
+      #   docker run --memory=1g --rm storage_app java -version

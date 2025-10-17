@@ -1,12 +1,12 @@
 version: "3.9"
 services:
-  storage-app:
+  storage_app:
     build: .
-    image: teletronics/storage_app:latest
+    image: storage_app:latest
     container_name: storage_app
     ports:
       - "8080:8080"
-    mem_limit: 1g
+
     deploy:
       resources:
         limits:
